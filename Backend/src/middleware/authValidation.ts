@@ -19,9 +19,8 @@ export let signUpValidation = async (
         message: "Validation Failed",
         errors: result.error.issues.map((issue) => issue.message),
       });
-    }
-    else{
-        next();
+    } else {
+      next();
     }
   } catch (err) {
     res.json({
@@ -47,13 +46,41 @@ export let loginValidation = async (
         message: "Validation Failed",
         errors: result.error.issues.map((issue) => issue.message),
       });
-    }
-    else{
-        next();
+    } else {
+      next();
     }
   } catch (err) {
     res.json({
       err: err,
+    });
+  }
+};
+
+export let contentSchema = z.object({
+  title: z.string().min(3).max(1000),
+  link: z.url(),
+  type: z.string(),
+});
+
+export const contentValidation = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    let result = contentSchema.safeParse(req.body);
+    if (!result.success) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation Failed",
+        errors: result.error.issues.map((issue) => issue.message),
+      });
+    } else {
+      next();
+    }
+  } catch (err) {
+    return res.json({
+      error: err,
     });
   }
 };
