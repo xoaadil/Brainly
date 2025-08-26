@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ArrowRight, BookOpen, Twitter, Youtube, BookmarkPlus, Folders, Smartphone, Search, Link2, Clock, Sparkles, Users, Star } from "lucide-react";
 import brain from "../assets/hero-brain.jpg"
+import { useNavigate } from "react-router-dom";
 // Mock image for hero section
 
 // Utility function for class names
@@ -125,6 +126,7 @@ CardContent.displayName = "CardContent"
 
 // Enhanced Hero Component
 const Hero = () => {
+    let navigate=useNavigate();
   return (
     <section className="py-24 lg:py-32 bg-gradient-to-br from-white via-gray-50 to-indigo-50 relative overflow-hidden">
       {/* Background decoration */}
@@ -157,12 +159,12 @@ const Hero = () => {
               <button
                 onClick={() => console.log('Navigate to /signup')}
                 className="inline-flex items-center justify-center gap-2 h-14 rounded-lg px-10 text-lg font-semibold bg-gray-900 text-white hover:bg-gray-800 shadow-2xl shadow-gray-900/20 transform hover:scale-[1.02] transition-all duration-300 group"
-              >
-                Get Started Free
+              > <button onClick={()=>navigate("/signup")}> Get Started Free</button>
+               
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
               <button
-                onClick={() => console.log('Navigate to /login')}
+                onClick={() =>navigate('/login')}
                 className="inline-flex items-center justify-center gap-2 h-14 rounded-lg px-10 text-lg font-semibold border-2 border-gray-900 bg-white text-gray-900 hover:bg-gray-900 hover:text-white shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300"
               >
                 Sign In
@@ -222,6 +224,7 @@ const Hero = () => {
 
 // Enhanced Features Component
 const Features = () => {
+    let navigate =useNavigate();
   const features = [
     {
       icon: BookmarkPlus,
@@ -319,7 +322,7 @@ const Features = () => {
         {/* Call-to-action at bottom of features */}
         <div className="text-center mt-16">
           <button
-            onClick={() => console.log('Navigate to /signup')}
+            onClick={() => navigate("/signup") }
             className="inline-flex items-center justify-center gap-2 h-12 rounded-lg px-8 text-base bg-gray-900 text-white hover:bg-gray-800 shadow-lg transform hover:scale-[1.02] transition-all duration-300"
           >
             Start Building Your Second Brain
