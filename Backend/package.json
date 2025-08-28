@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start": "node dist/index.js",
-    "live": "tsc --build --watch"
+    "live": "tsc --build --watch",
+    "build" : "tsc"
   },
   "keywords": [],
   "author": "",
