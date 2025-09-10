@@ -44,7 +44,7 @@ function Signup() {
 
   // Check if already logged in
   useEffect(() => {
-    if (localStorage.getItem("authorization")) {
+    if (localStorage.getItem("brainlyauthorization")) {
       navigate("/home");
     }
   }, [navigate]);
@@ -114,7 +114,7 @@ function Signup() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      localStorage.setItem("authorization", `Bearer ${res.data.token}`);
+      localStorage.setItem("brainlyauthorization", `Bearer ${res.data.token}`);
       
       showNotification('success', 'Account created successfully! Redirecting...');
       

@@ -111,8 +111,9 @@ export const getAllByUser = async (req: Request, res: Response, next: NextFuncti
 // GET ALL CONTENT BY TYPE
 export const getAllByType = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    let userId=req.id;
     const { type } = req.params;
-    const contents = await Content.find({ type }).sort({ createdAt: -1 });
+    const contents = await Content.find({ user : userId, type : type }).sort({ createdAt: -1 });
 
     return res.status(200).json({ contents });
   } catch (err) {

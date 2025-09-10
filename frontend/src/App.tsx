@@ -1,24 +1,25 @@
-
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout.tsx";
 import Landing from "./pages/Landing.tsx"
 import Signup from "./pages/Signup.tsx"
 import Login from "./pages/Login.tsx"
+import Home from './pages/Home.tsx';
+
 function App() {
-
-
   return (
     <>
-      
       <Router>
-        <Routes>
-          <Route path='/' element={<Landing/>}/>
-          <Route path='/landing' element={<Landing/>}></Route>
-          <Route path='/signup' element={<Signup/>}/>
-          <Route path='/login' element={<Login/>} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<Landing/>}/>
+            <Route path='/landing' element={<Landing/>}></Route>
+            <Route path='/signup' element={<Signup/>}/>
+            <Route path='/login' element={<Login/>} />
+            <Route path='/home' element={<Home/>}/>
+          </Routes>
+        </Layout>
       </Router>
-      
     </>
   )
 }

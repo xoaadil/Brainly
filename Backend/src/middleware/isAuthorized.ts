@@ -19,9 +19,9 @@ export const isAuthorized = async (
   next: NextFunction
 ) => {
   try {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers.brainlyauthorization; // header keys are lowercase in Node.js
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    if (!authHeader || Array.isArray(authHeader) || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({
         message: "Token not provided or invalid format",
       });

@@ -4,6 +4,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { ArrowRight, BookOpen, Twitter, Youtube, BookmarkPlus, Folders, Smartphone, Search, Link2, Clock, Sparkles, Users, Star } from "lucide-react";
 import brain from "../assets/hero-brain.jpg"
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 // Mock image for hero section
 
 // Utility function for class names
@@ -157,7 +159,7 @@ const Hero = () => {
             {/* Enhanced CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
               <button
-                onClick={() => console.log('Navigate to /signup')}
+                onClick={() => navigate("/signup")}
                 className="inline-flex items-center justify-center gap-2 h-14 rounded-lg px-10 text-lg font-semibold bg-gray-900 text-white hover:bg-gray-800 shadow-2xl shadow-gray-900/20 transform hover:scale-[1.02] transition-all duration-300 group"
               > <button onClick={()=>navigate("/signup")}> Get Started Free</button>
                
@@ -336,6 +338,15 @@ const Features = () => {
 
 // Main Landing Component
 const Landing = () => {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if(localStorage.getItem("brainlyauthorization")){
+      console.log("navigate to home");
+      navigate("/home");
+    }
+  }, []); // Empty dependency array means it runs once on mount
+
   return (
     <div className="min-h-screen bg-white">
       <Hero />
