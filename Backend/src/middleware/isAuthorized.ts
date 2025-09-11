@@ -15,13 +15,13 @@ const secret = process.env.JWT_SECRET as string;
 
 export const isAuthorized = async (
   req: Request,
-  res: Response,
+  res: Response, 
   next: NextFunction
 ) => {
   try {
     const authHeader = req.headers.brainlyauthorization; // header keys are lowercase in Node.js
 
-    if (!authHeader || Array.isArray(authHeader) || !authHeader.startsWith("Bearer ")) {
+    if (!authHeader || Array.isArray(authHeader) ) {
       return res.status(401).json({
         message: "Token not provided or invalid format",
       });
