@@ -341,7 +341,7 @@ const Landing = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    if(localStorage.getItem("brainlyauthorization")){
+    if(localStorage.getItem("brainlytoken")){
       console.log("navigate to home");
       navigate("/home");
     }

@@ -36,7 +36,7 @@ export default function Home() {
       setLoading(true);
       const response = await axios.get(`${url}/content/my-posts`, {
         headers: {
-          brainlyauthorization: localStorage.getItem("brainlyauthorization"),
+          brainlytoken: localStorage.getItem("brainlytoken"),
         },
       });
       setPosts(response.data.contents || []);
@@ -54,7 +54,7 @@ export default function Home() {
     try {
       await axios.delete(`${url}/content/${deletedContentId}`, {
         headers: {
-          brainlyauthorization: localStorage.getItem("brainlyauthorization"),
+          brainlytoken: localStorage.getItem("brainlytoken"),
         },
       });
       setPosts((prev) => prev.filter((p) => p._id !== deletedContentId));

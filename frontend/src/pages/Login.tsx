@@ -38,7 +38,7 @@ function Login() {
 
   // Check if already logged in
   useEffect(() => {
-    if (localStorage.getItem("brainlyauthorization")) {
+    if (localStorage.getItem("brainlytoken")) {
       navigate("/home");
     }
   }, []);
@@ -100,7 +100,7 @@ function Login() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      localStorage.setItem("brainlyauthorization", `Bearer ${res.data.token}`);
+     localStorage.setItem("brainlytoken", res.data.token);
 
       showNotification('success', 'Login successful! Redirecting...');
 

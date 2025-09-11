@@ -80,7 +80,7 @@ function AddContent({ onContentAdded, onClose }: AddContentProps) {
             }, {
                 headers: { 
                     'Content-Type': 'application/json',
-                    brainlyauthorization: localStorage.getItem("brainlyauthorization") 
+                    brainlytoken: localStorage.getItem("brainlytoken") 
                 }
             });
 
