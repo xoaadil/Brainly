@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 // Extend Request type to allow custom properties
 declare global {
@@ -11,6 +11,11 @@ declare global {
   }
 }
 
+interface MyJwtPayload extends JwtPayload {
+  id: string;
+  name: string;
+}
+
 const secret = process.env.JWT_SECRET as string;
 
 export const isAuthorized = async (
@@ -19,17 +24,15 @@ export const isAuthorized = async (
   next: NextFunction
 ) => {
   try {
-    const authHeader = req.headers.brainlyauthorization; // header keys are lowercase in Node.js
+    const tokenHeader = req.headers["brainlytoken"];
 
-    if (!authHeader || Array.isArray(authHeader) ) {
+    if (!tokenHeader || Array.isArray(tokenHeader)) {
       return res.status(401).json({
         message: "Token not provided or invalid format",
       });
     }
 
-    const token = authHeader.split(" ")[1];
-
-    const decoded = jwt.verify(token, secret) as { id: string; name: string };
+    const decoded = jwt.verify(tokenHeader, secret) as unknown as MyJwtPayload;
 
     req.id = decoded.id;
     req.name = decoded.name;
