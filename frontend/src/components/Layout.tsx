@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isUserMenuOpen, setIsUserMenuOpen] = React.useState(false);
   
   // Check if user is authenticated
-  const isAuthenticated = !!localStorage.getItem("brainlyauthorization");
+  const isAuthenticated = !!localStorage.getItem("brainlytoken");
   
   // Navigation items for authenticated users
   const navItems = [
@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem("brainlyauthorization");
+    localStorage.removeItem("brainlytoken");
     navigate("/");
   };
 
