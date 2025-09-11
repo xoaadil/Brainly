@@ -98,6 +98,7 @@ function AddContent({ onContentAdded, onClose }: AddContentProps) {
             // Close modal/form
             onClose();
             
+            
         } catch (err: any) {
             console.error("Error creating content:", err);
             setError(err.response?.data?.message || 'Failed to create content. Please try again.');

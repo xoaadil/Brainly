@@ -17,7 +17,7 @@ router.post("/create", isAuthorized, contentValidation, create);
 router.put("/edit/:id", isAuthorized, contentValidation, edit);
 
 // Delete content (by ID)
-router.delete("/delete/:id", isAuthorized, remove);
+router.delete("/:id", isAuthorized, remove);
 
 // Get all content by the logged-in user
 router.get("/my-posts", isAuthorized, getAllByUser);
