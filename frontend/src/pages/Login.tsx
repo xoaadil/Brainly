@@ -100,6 +100,10 @@ function Login() {
         { headers: { "Content-Type": "application/json" } }
       );
 
+      if (!res.data.token) {
+        throw new Error(res.data.message || "Login failed. Please check your credentials.");
+      }
+
      localStorage.setItem("brainlytoken", res.data.token);
 
       showNotification('success', 'Login successful! Redirecting...');
@@ -108,7 +112,7 @@ function Login() {
         navigate("/home");
       }, 1500);
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || "Login failed. Please check your credentials.";
+      const errorMessage = err.response?.data?.message || err.message || "Login failed. Please check your credentials.";
       showNotification('error', errorMessage);
     } finally {
       setIsLoading(false);

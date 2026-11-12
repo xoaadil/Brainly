@@ -114,15 +114,19 @@ function Signup() {
         { headers: { "Content-Type": "application/json" } }
       );
 
+      if (!res.data.token) {
+        throw new Error(res.data.message || "Signup failed. Please try again.");
+      }
+
       localStorage.setItem("brainlytoken", res.data.token);
-      
+
       showNotification('success', 'Account created successfully! Redirecting...');
       
       setTimeout(() => {
         navigate("/home");
       }, 1000);
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || "Signup failed. Please try again.";
+      const errorMessage = err.response?.data?.message || err.message || "Signup failed. Please try again.";
       showNotification('error', errorMessage);
     } finally {
       setIsLoading(false);

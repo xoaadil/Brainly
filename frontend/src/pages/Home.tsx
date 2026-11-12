@@ -1,6 +1,7 @@
 // Home.tsx
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import ContentSidebar from "../components/Sidebar";
 import AddContent from "../components/AddContent";
@@ -20,6 +21,7 @@ export interface Post {
 type FilterType = "all" | "youtube" | "twitter" | "document" | "other";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,8 +43,13 @@ export default function Home() {
       });
       setPosts(response.data.contents || []);
       setError(null);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error fetching posts:", err);
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        localStorage.removeItem("brainlytoken");
+        navigate("/login");
+        return;
+      }
       setError("Failed to load posts. Please try again.");
     } finally {
       setLoading(false);

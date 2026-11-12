@@ -18,7 +18,8 @@ export const signup = async (
     let already = await User.findOne({ email: email });
 
     if (already) {
-      return res.json({
+      return res.status(409).json({
+        success: false,
         message: "Email is already registered",
       });
     } else {
