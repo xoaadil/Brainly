@@ -213,37 +213,7 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="https://www.linkedin.com/in/aadil-siddiqui-88a014294/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 text-sm transition-colors duration-200 group"
-                >
-                  <Linkedin className="h-4 w-4" />
-                  <span>Aadil Siddiqui</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://x.com/aaadil2004"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-600 hover:text-blue-400 text-sm transition-colors duration-200 group"
-                >
-                  <Twitter className="h-4 w-4" />
-                  <span>@aaadil2004</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/xoaadil"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 text-sm transition-colors duration-200 group"
-                >
-                  <Github className="h-4 w-4" />
-                  <span>xoaadil</span>
-                </a>
+                <span className="text-gray-600 text-sm">Aayushi Sharma</span>
               </li>
             </ul>
           </div>
